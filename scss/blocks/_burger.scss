@@ -1,0 +1,64 @@
+.burger {
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  cursor: pointer;
+  $root: &;
+  align-items: center;
+  display: flex;
+  height: 32px;
+  justify-content: center;
+  width: 32px;
+
+  &:hover,
+  &:focus-visible {
+
+    .burger__menu,
+    .burger__menu::before,
+    .burger__menu::after {
+      width: 28px;
+      transition: width $transition-300;
+    }
+  }
+
+  .header--open & {
+    &__menu {
+      background-color: transparent;
+
+      &::after {
+        top: 0;
+        transform: translate(-50%, 0) rotate(45deg);
+        transition: top ease-in 0.3s, transform ease-in 0.3s 0.3s;
+      }
+
+      &::before {
+        top: 0;
+        transform: translate(-50%, 0) rotate(-45deg);
+        transition: top ease-in 0.3s, transform ease-in 0.3s 0.3s;
+      }
+    }
+  }
+
+  &__menu {
+    display: block;
+    background-color: $color-black;
+    height: 2px;
+    position: relative;
+    width: 32px;
+    margin: 0 auto;
+    left: 0;
+    top: -2px;
+
+    &::before,
+    &::after {
+      background-color: $color-black;
+      content: "";
+      height: 2px;
+      left: 50%;
+      position: absolute;
+      top: 4px;
+      transform: translate(-50%, 0);
+      width: 32px;
+    }
+  }
+}
